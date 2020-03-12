@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<style>
+* {
+  color: black;
+  font-size: 30px;
+  animation-name: fadein;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+}
+
+@keyframes fadein{
+  0%{opacity: 0;}
+  25%{opacity: .25;}
+  50%{opacity: .5;}
+  75%{opacity: .75;}
+  100%{opacity: 1;}
+}
+
+
+header{
+  color: black;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid black;
+  animation-duration: .2s;
+  animation-iteration-count: 1;
+}
+
+
+#wrapper {
+  display: grid;
+  grid-template-rows: repeat(2, 200px) ;
+  grid-row-gap: 30px;
+}
+img {
+  width: 100%;
+  height: 100%;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  oject-fit:cover;
+  animation-duration: 0s;
+}
+#rule{
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  color: black;
+  font-size: .8rem;
+  border-top: 5px solid black;
+  font-style: oblique;
+
+}
+#nextcard {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  border: 1px solid;
+  box-shadow: 5px 10px gray;
+  background-color: green;
+  background:green;
+  min-height: 80px;
+}
+#nextcard:active{
+  box-shadow: 0px 0px;
+  transform: translateY(4px);
+}
+.cardpics {
+  display: none;
+
+}
+
+</style>
+
+
+<html>
+<head>
+<title> "KINGS CUP" THE DRINKING GAME </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<header> Let's play Kings !  </header>
+<div id="wrapper">
+  <!-- THIS WRAPPER HOLDS 1. NEW CARD BUTTON 2. BOX FOR CARD # 3. THE RULE -->
+  <main id="rule"> Form a circle. Go clockwise and hit next card for each person's turn. Click "Next card" to start the game </main>
+
+  <button id="nextcard" onclick="pullCard()">Next Card</button>
+  <div id="kingsleft">Kings Left: 4</div>
+  <img class="startingimage" id="14" src="https://media.npr.org/assets/img/2011/11/04/red-solo-cup_custom-fa6ab5bdd6daa0d4aa83d693e7823f22a42e6bd0-s800-c85.jpg" alt="Red solo cup">
+  <img class="cardpics" id="13" src="https://www.thewrap.com/wp-content/uploads/2017/05/trump-crown.jpg" alt="Kingimage">
+  <img class="cardpics" id="12" src="https://images.says.com/uploads/story_source/source_image/373235/d3e1.jpg" alt="queen">
+  <img class="cardpics" id="11" src="https://i.imgur.com/yg9bltk.jpg" alt="Kingimage">
+  <img class="cardpics" id="10" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Playing_card_heart_10.svg/819px-Playing_card_heart_10.svg.png" alt="10">
+  <img class="cardpics" id="9" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Playing_card_diamond_9.svg/1200px-Playing_card_diamond_9.svg.png" alt="9">
+  <img class="cardpics" id="8" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Playing_card_diamond_8.svg/1200px-Playing_card_diamond_8.svg.png" alt="8">
+  <img class="cardpics" id="7" src="https://upload.wikimedia.org/wikipedia/commons/9/94/Playing_card_heart_7.svg" alt="7">
+  <img class="cardpics" id="6" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Playing_card_club_6.svg/800px-Playing_card_club_6.svg.png" alt="6">
+  <img class="cardpics" id="5" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Playing_card_spade_5.svg/1200px-Playing_card_spade_5.svg.png" alt="5">
+  <img class="cardpics" id="4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Playing_card_club_4.svg/819px-Playing_card_club_4.svg.png"alt="4">
+  <img class="cardpics" id="3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Playing_card_heart_3.svg/819px-Playing_card_heart_3.svg.png" alt="3">
+  <img class="cardpics" id="2" src="https://render.fineartamerica.com/images/rendered/default/greeting-card/images/artworkimages/medium/1/poker-playing-card-2-heart-miroslav-nemecek-transparent.png?&targetx=42&targety=37&imagewidth=415&imageheight=625&modelwidth=500&modelheight=700&backgroundcolor=ffffff&orientation=1" alt="2">
+  <img class="cardpics" id="1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTyIz4BXLMCtP69Z_6PuhlTu0FvjVNRp5IdFOnEnf44O2tels8Z" alt="Kingimage">
+  <img class="cardpics" id="ulose" src="https://s3.amazonaws.com/bit-photos/large/6285178.jpeg" alt="youlose">
+
+
+
+
+</div>
+
+<script>
+var dict = {
+  1: 4,
+  2: 4,
+  3: 4,
+  4: 4,
+  5: 4,
+  6: 4,
+  7: 4,
+  8: 4,
+  9: 4,
+  10: 4,
+  11: 4,
+  12: 4,
+  13: 4,
+}
+
+var numberrules = {
+1: "Ace: Waterfall - Every player begins drinking, and no one can stop until the player before them does",
+2: "2 - You - Whoever drew the card assigns a drink",
+3: "3 - Me - Whoever drew the card drinks",
+4: "4 - Floor - Everyone races to touch the floor, last person to do so drinks",
+5: "5 - Guys - All guys drink",
+6: "6 - Chicks - All girls drink",
+7: "7 - Heaven - All players point towards the sky, last player to do so drinks",
+8: "8 - Mate - Pick a person to drink with, everytime you drink they drink",
+9: "9 - Rhyme - Say a phrase, and everyone else must say phrases that rhyme",
+10: "10 - Categories - Pick a category, and say something from that category (i.e. if drinking games was the category, kings would be a viable answer)",
+11: "Jack - Never have I ever - Each player puts up 3 fingers, then starting with the person who drew the card, each player says never have I ever «something». If you've done it, you put a finger down, until someone loses",
+12: "Queen - Questions - The person who drew the card asks a random person a question, and they then turn and ask a random person a question, until someone loses by either failing to ask a question or by responding to the person who just asked them a question",
+13: "King - Ruler - Make a rule that everyone must follow until the next King is drawn (add some booze to the kings cup) Upon reaching 4 Kings, finish the kings cup!  "
+}
+
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
+function unhide(y){
+  console.log(y)
+  document.getElementById(y).style.display ="block"
+}
+
+function hide() {
+  var x = document.getElementsByClassName("cardpics");
+  for (index = 0; index < x.length; index++) {
+    x[index].style.display="none";
+   }}
+
+function hideNextCard(){
+  document.getElementById("nextcard").style.display ="none"
+}
+
+function showRule(x){
+  console.log('rule for ' + x)
+
+  let z = numberrules[x]
+  document.getElementById("rule").innerHTML = z
+}
+function showKingsLeft(numking){
+  document.getElementById("kingsleft").innerHTML = "Kings left: " + numking;
+}
+function pullCard(){
+  console.log(dict);
+  hide()
+  document.getElementById(14).style.display ="none"
+  var y = getRandomInt(1,14);
+  console.log("RANDOM CARD IS " + y);
+  if (y==13){
+    if (dict[13] >0){
+      dict[13] -=1;
+      let numking = dict[13]
+      showKingsLeft(numking)
+      showRule(y);
+      unhide(y);}
+      if (dict[13] ==0){
+        console.log("KINGS AT ZERO")
+        document.getElementById("rule").innerHTML = "FINISH THE KINGS CUP!!!"
+        unhide("ulose")
+        showKingsLeft('No Kings left, Last person who clicked finishes the Kings cup!!!! [Refresh the page for a new game]');
+        return;
+      }else return;
+    }
+  else if (!(y in dict)){
+    console.log("Key for " +y +"is empty");
+    pullCard();
+  }
+  else if (dict[y]>0){
+    dict[y]-=1;
+    showRule(y);
+    unhide(y);
+  }
+  else if(dict[y]==0){
+    delete dict[y];
+    console.log("deleted key BIG CAPS CAPS" + y )
+    pullCard()
+  }
+}
+
+
+</script>
+</html>
