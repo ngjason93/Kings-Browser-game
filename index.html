@@ -157,7 +157,9 @@ var numberrules = {
 13: "King - Ruler - Make a rule that everyone must follow until the next King is drawn (add some booze to the kings cup) Upon reaching 4 Kings, finish the kings cup!  "
 }
 
-
+function hidebutton(){
+  document.getElementById("nextcard").style.display="none"
+}
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -181,7 +183,6 @@ function hideNextCard(){
 
 function showRule(x){
   console.log('rule for ' + x)
-
   let z = numberrules[x]
   document.getElementById("rule").innerHTML = z
 }
@@ -206,6 +207,8 @@ function pullCard(){
         document.getElementById("rule").innerHTML = "FINISH THE KINGS CUP!!!"
         unhide("ulose")
         showKingsLeft('No Kings left, Last person who clicked finishes the Kings cup!!!! [Refresh the page for a new game]');
+        hidebutton();
+
         return;
       }else return;
     }
