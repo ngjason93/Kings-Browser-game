@@ -36,6 +36,8 @@ header{
 #kingsleft{
   font-size: 23px;
   font-style: oblique;
+  padding: 5px;
+  display: none;
 }
 #wrapper {
   display: grid;
@@ -81,6 +83,18 @@ img {
   box-shadow: 0px 0px;
   transform: translateY(4px);
 }
+
+#resetgame {
+  border: 1px solid;
+  box-shadow: 5px 10px gray;
+  background-color: green;
+  background:black;
+  min-height: 60px;
+  font-size: 20px;
+  border-radius: 20px;
+  color: white;
+}
+
 .cardpics {
   display: none;
 
@@ -94,7 +108,13 @@ footer{
   font-size: 10px;
 
 }
-
+#note{
+  font-size: 20px;
+  padding: 10px;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  font-weight: bold;
+}
 </style>
 
 
@@ -121,6 +141,8 @@ footer{
     </main>
 <!-- change button to swipe action to pull card-->
   <button id="nextcard" onclick="pullCard()"> Next card (nonmobile users) ></button>
+  <button id="resetgame" onclick="refreshpage()"> Reset Game </button>
+  <div id="note"> NOTE: Ignore Card Suits/ Pictures are just for visual display </div>
   <img class="startingimage" id="14" src="https://media.npr.org/assets/img/2011/11/04/red-solo-cup_custom-fa6ab5bdd6daa0d4aa83d693e7823f22a42e6bd0-s800-c85.jpg" alt="Red solo cup">
   <img class="cardpics" id="13" src="https://www.thewrap.com/wp-content/uploads/2017/05/trump-crown.jpg" alt="Kingimage">
   <img class="cardpics" id="12" src="https://images.says.com/uploads/story_source/source_image/373235/d3e1.jpg" alt="queen">
@@ -209,6 +231,7 @@ function showKingsLeft(numking){
 }
 function pullCard(){
   console.log(dict);
+  unhide('kingsleft')
   hide()
   document.getElementById(14).style.display ="none"
   var y = getRandomInt(1,14);
@@ -225,7 +248,7 @@ function pullCard(){
         console.log("KINGS AT ZERO")
         document.getElementById("rule").innerHTML = "FINISH THE KINGS CUP!!!"
         unhide("ulose")
-        showKingsLeft('No Kings left, Last person who clicked finishes the Kings cup!!!! [Refresh the page for a new game]');
+        showKingsLeft('0, The last person to swipe finish the Kings cup!!!!');
         hidebutton();
 
         return;
@@ -280,6 +303,8 @@ for (let i = 1; i <= 14; i++) {
 }
   //imgswipe = findimage(14);//
   }, false)
-
+function refreshpage(){
+  location.reload()
+}
 </script>
 </html>
