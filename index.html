@@ -57,6 +57,7 @@ img {
   grid-column-end: 4;
   oject-fit:cover;
   animation-duration: 0s;
+  /* transform: none; */
 }
 #rule{
   grid-column-start: 1;
@@ -115,6 +116,7 @@ footer{
   grid-column-end: 4;
   font-weight: bold;
 }
+
 </style>
 
 
@@ -197,8 +199,10 @@ var numberrules = {
 13: "King - Ruler - Make a rule that everyone must follow until the next King is drawn (add some booze to the kings cup) Upon reaching 4 Kings, finish the kings cup!  "
 }
 
-function hidebutton(){
-  document.getElementById("nextcard").style.display="none"
+function hidebutton(){//also reset animations//
+  document.getElementById("nextcard").style.display="none";
+
+
 }
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -216,6 +220,8 @@ function hide() {
   for (index = 0; index < x.length; index++) {
     x[index].style.display="none";
    }}
+
+
 
 function hideNextCard(){
   document.getElementById("nextcard").style.display ="none"
@@ -284,13 +290,32 @@ function recallEventListener(y){
     startingx = parseInt(touchpoint.clientX);
   }, false)
 
+  imgswipe.addEventListener('touchmove', function(e){
+    let touchpoint = e.changedTouches[0];
+    let dist = parseInt(touchpoint.clientX);
+    let actualdist = (dist-startingx);
+    if (actualdist >50){
+      swipeawayanimation(y);
+
+
+    }
+    if (actualdist <-50){
+      swipeLeftawayanimation(y);
+    }
+  }, false)
+
   imgswipe.addEventListener('touchend',function(e){
     let touchpoint = e.changedTouches[0];
     let dist = parseInt(touchpoint.clientX);
     let actualdist = (dist-startingx);
     if (Math.abs(actualdist)>150){
       pullCard()
+      hideAnimations()
     }
+    if (Math.abs(actualdist)<150){
+      hideAnimations();
+    }
+
   },false)
   }
 
@@ -306,5 +331,28 @@ for (let i = 1; i <= 14; i++) {
 function refreshpage(){
   location.reload()
 }
+function swipeawayanimation(y){
+  var imgActedOn = document.getElementById(y);
+  // var degRotate = multipler*30;
+  imgActedOn.style.transform = "rotate(20deg) scale(.8) translateX(200px)";
+}
+function swipeLeftawayanimation(y){
+  var imgActedOn = document.getElementById(y);
+  // var degRotate = multipler*30;
+  imgActedOn.style.transform = "rotate(-20deg) scale(.8) translateX(-200px)";
+}
+
+// function resetAnimations(y){
+//   var imgActedOn = document.getElementById(y);
+//   console.log(imgActedOn);
+//   imgActedOn.style.transform = "rotate(0deg) scale(1)";
+
+function hideAnimations() {
+ var x = document.getElementsByClassName("cardpics");
+ for (index = 0; index < x.length; index++) {
+   x[index].style.transform = "rotate(0deg) scale(1) translateX(0px)";
+  }}
+
+
 </script>
 </html>
